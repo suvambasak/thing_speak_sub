@@ -38,7 +38,7 @@ class _TpSubState extends State<TpSub> {
           child: ListView(
             padding: EdgeInsets.only(
               top: 16.0,
-              bottom: 30.0,
+              bottom: 70.0,
               left: 16.0,
               right: 16.0,
             ),
