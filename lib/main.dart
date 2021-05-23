@@ -35,11 +35,14 @@ class _TpSubState extends State<TpSub> {
       home: Scaffold(
         floatingActionButton: reload(),
         body: SafeArea(
-          child: Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Column(
-              children: body(),
+          child: ListView(
+            padding: EdgeInsets.only(
+              top: 16.0,
+              bottom: 30.0,
+              left: 16.0,
+              right: 16.0,
             ),
+            children: body(),
           ),
         ),
       ),
