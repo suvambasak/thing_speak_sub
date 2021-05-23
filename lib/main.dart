@@ -10,7 +10,7 @@ class TpSub extends StatefulWidget {
 class _TpSubState extends State<TpSub> {
   // URL
   static const String dataURL =
-      'https://api.thingspeak.com/channels/1385704/feeds.json?results=1';
+      'https://api.thingspeak.com/channels/1385093/feeds.json?results=1';
 
   // Logos
   static const IconData dateLogo = Icons.date_range;
