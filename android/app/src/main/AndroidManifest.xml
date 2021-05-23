@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.thing_speak_sub">
    <application
-        android:label="thing_speak_sub"
+        android:label="ThingSpeak Sub"
         android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"

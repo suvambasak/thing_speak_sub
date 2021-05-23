@@ -11,7 +11,7 @@ class TpSub extends StatefulWidget {
 class _TpSubState extends State<TpSub> {
   // URL
   static const String dataURL =
-      'https://api.thingspeak.com/channels/1385093/feeds.json?results=1';
+      'https://api.thingspeak.com/channels/1385704/feeds.json?results=1';
 
   // Logos
   static const IconData dateLogo = Icons.date_range;
@@ -21,6 +21,56 @@ class _TpSubState extends State<TpSub> {
 
   // Current data.
   Data currentState = Data();
+
+  @override
+  void initState() {
+    super.initState();
+    loadData();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'ThingSpeak Subscribe',
+      home: Scaffold(
+        floatingActionButton: reload(),
+        body: SafeArea(
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Column(
+              children: body(),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
+// UI build
+  List<Widget> body() {
+    List<Widget> components = [];
+    components.add(SizedBox(height: 8.0));
+    components.add(appHeader());
+    components.add(appSubHeader());
+    components.add(SizedBox(height: 16.0));
+
+    if (currentState.isloaded) {
+      components.add(cardBuilder(dateLogo, 'Data', currentState.date));
+      components.add(cardBuilder(timeLogo, 'Time', currentState.time));
+      components.add(cardBuilder(
+          temperatureLogo, 'Temperature', currentState.temperature));
+      components
+          .add(cardBuilder(humidityLogo, 'Humidity', currentState.humidity));
+    } else {
+      components.add(Center(
+          child: Padding(
+        padding: const EdgeInsets.all(64.0),
+        child: CircularProgressIndicator(),
+      )));
+    }
+
+    return components;
+  }
 
   // Fetch data.
   Future<void> loadData() async {
@@ -42,47 +92,23 @@ class _TpSubState extends State<TpSub> {
             jsonResponse['feeds'][0]['created_at'].split('T')[1].split('Z')[0];
         currentState.temperature = jsonResponse['feeds'][0]['field1'];
         currentState.humidity = jsonResponse['feeds'][0]['field2'];
+        currentState.setLoaded();
       });
     } else {
-      print('Error');
-    }
-
-    // setState(() {
-    //   widgets = jsonDecode(response.body);
-    // });
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'ThingSpeak Subscribe',
-      home: Scaffold(
-        floatingActionButton: reload(),
-        body: SafeArea(
-          child: Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Column(
-              children: [
-                SizedBox(height: 8.0),
-                appHeader(),
-                appSubHeader(),
-                SizedBox(height: 16.0),
-                cardBuilder(dateLogo, 'Data', currentState.date),
-                cardBuilder(timeLogo, 'Time', currentState.time),
-                cardBuilder(
-                    temperatureLogo, 'Temperature', currentState.temperature),
-                cardBuilder(humidityLogo, 'Humidity', currentState.humidity),
-              ],
-            ),
-          ),
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text('Error while loading...'),
         ),
-      ),
-    );
+      );
+    }
   }
 
   // Cards for showing data
   Widget cardBuilder(IconData logo, String heading, String state) {
     return Card(
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(15.0),
+      ),
       elevation: 10.0,
       child: Column(
         children: [
@@ -90,19 +116,26 @@ class _TpSubState extends State<TpSub> {
             leading: Icon(logo, color: Colors.black),
             title: Text(
               heading,
-              style: TextStyle(color: Colors.blue),
+              textScaleFactor: 1.2,
+              style: TextStyle(color: Colors.blue, fontWeight: FontWeight.bold),
             ),
           ),
           Divider(
-            thickness: 1,
+            indent: 20.0,
+            endIndent: 20.0,
+            thickness: 3,
           ),
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: Text(
               state,
               textScaleFactor: 4,
+              style: TextStyle(color: Colors.blueGrey.shade700),
             ),
           ),
+          SizedBox(
+            height: 3,
+          )
         ],
       ),
     );
@@ -117,7 +150,7 @@ class _TpSubState extends State<TpSub> {
         textScaleFactor: 2.5,
         style: TextStyle(
           color: Colors.blue,
-          fontWeight: FontWeight.bold,
+          fontWeight: FontWeight.w900,
         ),
       ),
     );
@@ -132,6 +165,7 @@ class _TpSubState extends State<TpSub> {
         textScaleFactor: 1.5,
         style: TextStyle(
           color: Colors.green,
+          fontWeight: FontWeight.bold,
         ),
       ),
     );
@@ -139,10 +173,11 @@ class _TpSubState extends State<TpSub> {
 
   // Floating action button for reload data.
   Widget reload() {
-    return FloatingActionButton(
+    return FloatingActionButton.extended(
       elevation: 10.0,
       onPressed: loadData,
-      child: Icon(Icons.update),
+      icon: Icon(Icons.update),
+      label: Text('Update'),
       backgroundColor: Colors.red,
     );
   }
