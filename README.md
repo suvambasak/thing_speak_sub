@@ -7,7 +7,11 @@ For Android App:
 - Donwload APK from here: [link  NOR ADDED YET](www.google.com).
 - Before install just goto: Settings > Apps & notifications > Special app access > install unknown apps and allow that app from where you are trying to install it.
 
-![Android App](https://github.com/suvambasak/thing_speak_sub/blob/master/doc/android.gif?raw=true)
+<p align="center">
+  <img src="https://github.com/suvambasak/thing_speak_sub/blob/master/doc/android.gif?raw=true">
+</p>
+
+<!-- ![Android App](https://github.com/suvambasak/thing_speak_sub/blob/master/doc/android.gif?raw=true) -->
 
 # Desktop Build (Linux only)
 For Desktop App:
@@ -41,8 +45,11 @@ $ http-server
 ```
 Goto : http://localhost:8080/
 
+<p align="center">
+  <img src="https://github.com/suvambasak/thing_speak_sub/blob/master/doc/web.png?raw=true">
+</p>
 
-![Web App](https://github.com/suvambasak/thing_speak_sub/blob/master/doc/web.png?raw=true)
+<!-- ![Web App](https://github.com/suvambasak/thing_speak_sub/blob/master/doc/web.png?raw=true) -->
 
 
 ---
