@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
+import 'package:thing_speak_sub/data.dart';
 
 class TpSub extends StatefulWidget {
   @override
@@ -145,13 +146,6 @@ class _TpSubState extends State<TpSub> {
       backgroundColor: Colors.red,
     );
   }
-}
-
-class Data {
-  String date = '0000-00-00';
-  String time = '00:00:00';
-  String temperature = '00';
-  String humidity = '00';
 }
 
 void main() => runApp(TpSub());
