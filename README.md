@@ -8,7 +8,7 @@ For Android App:
 - Before install just goto: Settings > Apps & notifications > Special app access > install unknown apps and allow that app from where you are trying to install it.
 
 <p align="center">
-  <img src="https://github.com/suvambasak/thing_speak_sub/blob/master/doc/android.gif?raw=true">
+  <img height="540" width="250" src="https://github.com/suvambasak/thing_speak_sub/blob/master/doc/android.gif?raw=true">
 </p>
 
 <!-- ![Android App](https://github.com/suvambasak/thing_speak_sub/blob/master/doc/android.gif?raw=true) -->
@@ -23,8 +23,12 @@ For Desktop App:
 $ sudo chmod +x thing_speak_sub
 $ ./thing_speak_sub
 ```
+<p align="center">
+  <img height="470" width="582" src="https://github.com/suvambasak/thing_speak_sub/blob/master/doc/desktop_linux.png?raw=true">
+</p>
 
-![Desktop App](https://github.com/suvambasak/thing_speak_sub/blob/master/doc/desktop_linux.png?raw=true)
+
+<!-- ![Desktop App](https://github.com/suvambasak/thing_speak_sub/blob/master/doc/desktop_linux.png?raw=true) -->
 
 # Web Build
 For Web App:
@@ -35,27 +39,31 @@ $ sudo apt install nodejs npm
 $ sudo npm install http-server -g
 ```
 ## Run
-Clone the repository and start http-server.
-Install Node.js and npm
+Donwload the zip and unzip it. Inside that directory start http-server.
 
 ```bash
-$ git clone https://github.com/suvambasak/thing_speak_sub.git
-$ cd thing_speak_sub/
 $ http-server
 ```
 Goto : http://localhost:8080/
 
 <p align="center">
-  <img src="https://github.com/suvambasak/thing_speak_sub/blob/master/doc/web.png?raw=true">
+  <img width="400" hight="752" src="https://github.com/suvambasak/thing_speak_sub/blob/master/doc/web.png?raw=true">
 </p>
 
 <!-- ![Web App](https://github.com/suvambasak/thing_speak_sub/blob/master/doc/web.png?raw=true) -->
 
-
+<br><br><br>
 ---
 ---
 # Interested in any modification/contribution?
 
+- Follow this documentation for installation depending on you environment. [Flutter](https://flutter.dev/docs/get-started/install)
+- Install git and clone the repository.
+```bash
+$ git clone https://github.com/suvambasak/thing_speak_sub.git
+$ cd thing_speak_sub
+```
+- And start working! <span>&#128077;&#127996;</span>
 
 <!-- 
 This project is a starting point for a Flutter application.
