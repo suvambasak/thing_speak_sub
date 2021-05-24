@@ -1,23 +1,24 @@
 # ThingSpeak Subscribe
 
-A new Flutter project. A cross-platform app that subscribes to the ThingSpeak Cloud channel to fetch and show data. This app is only for subscribing the to channel. If you are interested in Publish to the ThingSpeak channel please visit this [link  NOR ADDED YET](www.google.com).
+A new Flutter project. A cross-platform app that subscribes to the **ThingSpeak Cloud** channel to fetch and show data. This app is only for subscribing the to channel. If you are interested in **Publish** to the ThingSpeak channel please visit this [__Link__](https://github.com/suvambasak/thingspeak-pub-sub.git).
 
 # Android Build
 For Android App:
-- Donwload APK from here: [link  NOR ADDED YET](www.google.com).
-- Before install just goto: Settings > Apps & notifications > Special app access > install unknown apps and allow that app from where you are trying to install it.
-
+- Donwload **APK** from here: [__Link__](https://github.com/suvambasak/thing_speak_sub/releases/download/v0.1-alpha/app-release.apk).
+- Before you install just goto: Settings > Apps & notifications > Special app access > install unknown apps and allow that app from where you are trying to install it.
+<br><br>
 <p align="center">
   <img height="540" width="250" src="https://github.com/suvambasak/thing_speak_sub/blob/master/doc/android.gif?raw=true">
 </p>
 
 <!-- ![Android App](https://github.com/suvambasak/thing_speak_sub/blob/master/doc/android.gif?raw=true) -->
+<br><br>
 
 # Desktop Build (Linux only)
 For Desktop App:
-- Donwload zip file from here: [link  NOR ADDED YET](www.google.com).
-- Unzip the file.
-- Double click on the thing_speak_sub OR open terminal in that directory chnage permission and execute.
+- Donwload **tar.gz** file from here: [__Link__](https://github.com/suvambasak/thing_speak_sub/releases/download/v0.1-alpha/release-linux.tar.gz).
+- Extract the file.
+- Double click on the thing_speak_sub **OR** open terminal in that directory chnage permission and execute.
 
 ```bash
 $ sudo chmod +x thing_speak_sub
@@ -27,8 +28,10 @@ $ ./thing_speak_sub
   <img height="470" width="582" src="https://github.com/suvambasak/thing_speak_sub/blob/master/doc/desktop_linux.png?raw=true">
 </p>
 
-
 <!-- ![Desktop App](https://github.com/suvambasak/thing_speak_sub/blob/master/doc/desktop_linux.png?raw=true) -->
+<br><br>
+
+
 
 # Web Build
 For Web App:
@@ -38,14 +41,14 @@ Install Node.js and npm
 $ sudo apt install nodejs npm
 $ sudo npm install http-server -g
 ```
-## Run
-Donwload the zip and unzip it. Inside that directory start http-server.
+## Start
+Donwload the [__zip__](https://github.com/suvambasak/thing_speak_sub/releases/download/v0.1-alpha/release-web.tar.gz). and unzip it. Inside that directory start http-server.
 
 ```bash
 $ http-server
 ```
 Goto : http://localhost:8080/
-
+<br><br>
 <p align="center">
   <img width="400" hight="752" src="https://github.com/suvambasak/thing_speak_sub/blob/master/doc/web.png?raw=true">
 </p>
@@ -57,9 +60,10 @@ Goto : http://localhost:8080/
 ---
 # Interested in any modification/contribution?
 
-- Follow this documentation for installation depending on you environment. [Flutter](https://flutter.dev/docs/get-started/install)
+- Follow this documentation for installation depending on you environment. &rarr; [Flutter](https://flutter.dev/docs/get-started/install)
 - Install git and clone the repository.
 ```bash
+$ sudo apt install git
 $ git clone https://github.com/suvambasak/thing_speak_sub.git
 $ cd thing_speak_sub
 ```
