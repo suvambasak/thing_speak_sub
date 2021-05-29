@@ -52,7 +52,7 @@ class _TpSubState extends State<TpSub> {
     Header header = Header();
     List<Widget> components = [];
     components.add(SizedBox(height: 8.0));
-    components.add(header.getHeader());
+    components.add(header.getHeader(true));
     components.add(header.getSubHeader('Subscribe'));
     components.add(SizedBox(height: 16.0));
 
@@ -142,36 +142,6 @@ class _TpSubState extends State<TpSub> {
       ),
     );
   }
-
-  // Heading
-  // Widget appHeader() {
-  //   return Padding(
-  //     padding: const EdgeInsets.only(left: 8.0, right: 8.0),
-  //     child: Text(
-  //       'ThingSpeak',
-  //       textScaleFactor: 2.5,
-  //       style: TextStyle(
-  //         color: Colors.blue,
-  //         fontWeight: FontWeight.w900,
-  //       ),
-  //     ),
-  //   );
-  // }
-
-  // Sub heading
-  // Widget appSubHeader(String text) {
-  //   return Padding(
-  //     padding: const EdgeInsets.only(left: 110.0, right: 8.0),
-  //     child: Text(
-  //       text,
-  //       textScaleFactor: 1.5,
-  //       style: TextStyle(
-  //         color: Colors.green,
-  //         fontWeight: FontWeight.bold,
-  //       ),
-  //     ),
-  //   );
-  // }
 
   // Floating action button for reload data.
   Widget reload() {

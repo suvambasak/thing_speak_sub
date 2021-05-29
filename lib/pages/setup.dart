@@ -87,7 +87,7 @@ class _SetupState extends State<Setup> {
             right: 16.0,
           ),
           children: [
-            header.getHeader(),
+            header.getHeader(false),
             header.getSubHeader('Setup'),
             SizedBox(
               height: 20.0,
