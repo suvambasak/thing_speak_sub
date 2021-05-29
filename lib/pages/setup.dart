@@ -9,6 +9,20 @@ class Setup extends StatefulWidget {
 
 class _SetupState extends State<Setup> {
   Header header = Header();
+  final _dataFrom = GlobalKey<FormState>();
+  final channelTextController = TextEditingController();
+  final fieldTextController = TextEditingController();
+
+  void _saveData() async {
+    if (_dataFrom.currentState!.validate()) {
+      print('Valid');
+      print(channelTextController.text);
+      print(fieldTextController.text);
+    } else {
+      print('Invalid');
+    }
+    // Navigator.pushNamed(context, '/sub');
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -28,6 +42,7 @@ class _SetupState extends State<Setup> {
               height: 20.0,
             ),
             Form(
+              key: _dataFrom,
               child: setForm(),
             )
           ],
@@ -40,27 +55,39 @@ class _SetupState extends State<Setup> {
     return Column(
       children: [
         TextFormField(
+          controller: channelTextController,
           decoration: InputDecoration(
             labelText: 'Channel ID',
             hintText: 'Your Chennel ID (Eg: 1385093)',
           ),
+          validator: (value) {
+            if (value!.isEmpty) return 'Channel ID cannot be empty!';
+            return null;
+          },
         ),
         SizedBox(
           height: 5.0,
         ),
         TextFormField(
+          controller: fieldTextController,
           decoration: InputDecoration(
             labelText: 'Total Field',
-            hintText: 'Field#: (Eg: 2)',
+            hintText: 'No of Field: (Eg: 2)',
           ),
+          keyboardType: TextInputType.number,
+          validator: (value) {
+            if (value!.isEmpty) return 'No of Field cannot be empty!';
+            return null;
+          },
         ),
         SizedBox(
           height: 15.0,
         ),
         ElevatedButton(
-          onPressed: () {
-            Navigator.pushNamed(context, '/sub');
-          },
+          onPressed: _saveData,
+          // onPressed: () {
+          //   Navigator.pushNamed(context, '/sub');
+          // },
           child: Text('Save'),
           style: TextButton.styleFrom(minimumSize: Size(100.0, 40.0)),
         ),
@@ -69,5 +96,13 @@ class _SetupState extends State<Setup> {
         )
       ],
     );
+  }
+
+  @override
+  void dispose() {
+    // Clean up the controller when the widget is disposed.
+    channelTextController.dispose();
+    fieldTextController.dispose();
+    super.dispose();
   }
 }
