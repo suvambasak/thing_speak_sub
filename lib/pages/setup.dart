@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:thing_speak_sub/util/storage.dart';
 
 import '../head/header.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class Setup extends StatefulWidget {
   @override
@@ -8,21 +10,70 @@ class Setup extends StatefulWidget {
 }
 
 class _SetupState extends State<Setup> {
+  // header
   Header header = Header();
+  // from key
   final _dataFrom = GlobalKey<FormState>();
+  // input field controller
   final channelTextController = TextEditingController();
   final fieldTextController = TextEditingController();
 
+  @override
+  void initState() {
+    super.initState();
+    changePage();
+  }
+
+  // chnage page if data saved
+  void changePage() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    bool? status = prefs.getBool(StorageKeys.SAVE_STATUS);
+    if (status != null && status) Navigator.pushNamed(context, '/sub');
+  }
+
+  // save data and change page
   void _saveData() async {
     if (_dataFrom.currentState!.validate()) {
       print('Valid');
-      print(channelTextController.text);
-      print(fieldTextController.text);
+      // print(channelTextController.text);
+      // print(fieldTextController.text);
+
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      prefs.setString(StorageKeys.CHANNEL_ID, channelTextController.text);
+      prefs.setString(StorageKeys.FIELD_COUNT, fieldTextController.text);
+      prefs.setBool(StorageKeys.SAVE_STATUS, true);
+
+      Navigator.pushNamed(context, '/sub');
     } else {
       print('Invalid');
     }
-    // Navigator.pushNamed(context, '/sub');
   }
+
+  // void _readData() async {
+  //   SharedPreferences prefs = await SharedPreferences.getInstance();
+  //   String? v = prefs.getString(StorageKeys.CHANNEL_ID);
+  //   print(v);
+  //   v = prefs.getString(StorageKeys.FIELD_COUNT);
+  //   print(v);
+  //   bool? b = prefs.getBool(StorageKeys.SAVE_STATUS);
+
+  //   if (b == null) {
+  //     print('bool null');
+  //   }
+  //   if (b == true) {
+  //     print('bool true');
+  //   }
+  // }
+
+  // void _clearData() async {
+  //   SharedPreferences prefs = await SharedPreferences.getInstance();
+  //   //Remove String
+  //   prefs.remove(StorageKeys.CHANNEL_ID);
+  //   //Remove bool
+  //   prefs.remove(StorageKeys.FIELD_COUNT);
+  //   //Remove int
+  //   prefs.remove(StorageKeys.SAVE_STATUS);
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -51,9 +102,11 @@ class _SetupState extends State<Setup> {
     );
   }
 
+  // from layout
   Column setForm() {
     return Column(
       children: [
+        // channel id
         TextFormField(
           controller: channelTextController,
           decoration: InputDecoration(
@@ -68,6 +121,8 @@ class _SetupState extends State<Setup> {
         SizedBox(
           height: 5.0,
         ),
+
+        // number of field
         TextFormField(
           controller: fieldTextController,
           decoration: InputDecoration(
@@ -83,6 +138,8 @@ class _SetupState extends State<Setup> {
         SizedBox(
           height: 15.0,
         ),
+
+        // button to save
         ElevatedButton(
           onPressed: _saveData,
           // onPressed: () {
@@ -93,7 +150,25 @@ class _SetupState extends State<Setup> {
         ),
         SizedBox(
           height: 20.0,
-        )
+        ),
+
+        // FOR TEST ONLY
+        // ElevatedButton(
+        //   onPressed: _readData,
+        //   // onPressed: () {
+        //   //   Navigator.pushNamed(context, '/sub');
+        //   // },
+        //   child: Text('TEST'),
+        //   style: TextButton.styleFrom(minimumSize: Size(100.0, 40.0)),
+        // ),
+        // ElevatedButton(
+        //   onPressed: _clearData,
+        //   // onPressed: () {
+        //   //   Navigator.pushNamed(context, '/sub');
+        //   // },
+        //   child: Text('CLEAR'),
+        //   style: TextButton.styleFrom(minimumSize: Size(100.0, 40.0)),
+        // )
       ],
     );
   }
