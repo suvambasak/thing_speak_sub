@@ -2,8 +2,14 @@ import 'package:flutter/material.dart';
 
 import '../head/header.dart';
 
-class Setup extends StatelessWidget {
+class Setup extends StatefulWidget {
+  @override
+  _SetupState createState() => _SetupState();
+}
+
+class _SetupState extends State<Setup> {
   Header header = Header();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -18,39 +24,50 @@ class Setup extends StatelessWidget {
           children: [
             header.getHeader(),
             header.getSubHeader('Setup'),
+            SizedBox(
+              height: 20.0,
+            ),
+            Form(
+              child: setForm(),
+            )
           ],
         ),
       ),
     );
   }
 
-  // // Heading
-  // Widget appHeader() {
-  //   return Padding(
-  //     padding: const EdgeInsets.only(left: 8.0, right: 8.0),
-  //     child: Text(
-  //       'ThingSpeak',
-  //       textScaleFactor: 2.5,
-  //       style: TextStyle(
-  //         color: Colors.blue,
-  //         fontWeight: FontWeight.w900,
-  //       ),
-  //     ),
-  //   );
-  // }
-
-  // Sub heading
-  // Widget appSubHeader(String text) {
-  //   return Padding(
-  //     padding: const EdgeInsets.only(left: 110.0, right: 8.0),
-  //     child: Text(
-  //       text,
-  //       textScaleFactor: 1.5,
-  //       style: TextStyle(
-  //         color: Colors.green,
-  //         fontWeight: FontWeight.bold,
-  //       ),
-  //     ),
-  //   );
-  // }
+  Column setForm() {
+    return Column(
+      children: [
+        TextFormField(
+          decoration: InputDecoration(
+            labelText: 'Channel ID',
+            hintText: 'Your Chennel ID (Eg: 1385093)',
+          ),
+        ),
+        SizedBox(
+          height: 5.0,
+        ),
+        TextFormField(
+          decoration: InputDecoration(
+            labelText: 'Total Field',
+            hintText: 'Field#: (Eg: 2)',
+          ),
+        ),
+        SizedBox(
+          height: 15.0,
+        ),
+        ElevatedButton(
+          onPressed: () {
+            Navigator.pushNamed(context, '/sub');
+          },
+          child: Text('Save'),
+          style: TextButton.styleFrom(minimumSize: Size(100.0, 40.0)),
+        ),
+        SizedBox(
+          height: 20.0,
+        )
+      ],
+    );
+  }
 }
