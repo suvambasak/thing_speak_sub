@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:thing_speak_sub/data.dart';
+import 'package:thing_speak_sub/head/header.dart';
 
 class TpSub extends StatefulWidget {
   @override
@@ -48,10 +49,11 @@ class _TpSubState extends State<TpSub> {
 
 // UI build
   List<Widget> body() {
+    Header header = Header();
     List<Widget> components = [];
     components.add(SizedBox(height: 8.0));
-    components.add(appHeader());
-    components.add(appSubHeader());
+    components.add(header.getHeader());
+    components.add(header.getSubHeader('Subscribe'));
     components.add(SizedBox(height: 16.0));
 
     if (currentState.isloaded) {
@@ -142,34 +144,34 @@ class _TpSubState extends State<TpSub> {
   }
 
   // Heading
-  Widget appHeader() {
-    return Padding(
-      padding: const EdgeInsets.only(left: 8.0, right: 8.0),
-      child: Text(
-        'ThingSpeak',
-        textScaleFactor: 2.5,
-        style: TextStyle(
-          color: Colors.blue,
-          fontWeight: FontWeight.w900,
-        ),
-      ),
-    );
-  }
+  // Widget appHeader() {
+  //   return Padding(
+  //     padding: const EdgeInsets.only(left: 8.0, right: 8.0),
+  //     child: Text(
+  //       'ThingSpeak',
+  //       textScaleFactor: 2.5,
+  //       style: TextStyle(
+  //         color: Colors.blue,
+  //         fontWeight: FontWeight.w900,
+  //       ),
+  //     ),
+  //   );
+  // }
 
   // Sub heading
-  Widget appSubHeader() {
-    return Padding(
-      padding: const EdgeInsets.only(left: 110.0, right: 8.0),
-      child: Text(
-        'Subscribe',
-        textScaleFactor: 1.5,
-        style: TextStyle(
-          color: Colors.green,
-          fontWeight: FontWeight.bold,
-        ),
-      ),
-    );
-  }
+  // Widget appSubHeader(String text) {
+  //   return Padding(
+  //     padding: const EdgeInsets.only(left: 110.0, right: 8.0),
+  //     child: Text(
+  //       text,
+  //       textScaleFactor: 1.5,
+  //       style: TextStyle(
+  //         color: Colors.green,
+  //         fontWeight: FontWeight.bold,
+  //       ),
+  //     ),
+  //   );
+  // }
 
   // Floating action button for reload data.
   Widget reload() {
