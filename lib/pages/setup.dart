@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:thing_speak_sub/util/storage.dart';
 
-import '../widgets/header.dart';
+import '../widgets/components.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class Setup extends StatefulWidget {
@@ -33,15 +33,15 @@ class _SetupState extends State<Setup> {
   void _saveData() async {
     if (_dataFrom.currentState!.validate()) {
       print('Valid');
-      // print(channelTextController.text);
-      // print(fieldTextController.text);
 
+      // save data
       SharedPreferences prefs = await SharedPreferences.getInstance();
       prefs.setString(StorageKeys.CHANNEL_ID, channelTextController.text);
       prefs.setInt(
           StorageKeys.FIELD_COUNT, int.parse(fieldTextController.text));
       prefs.setBool(StorageKeys.SAVE_STATUS, true);
 
+      // change page
       Navigator.pushNamed(context, '/sub');
     } else {
       print('Invalid');
@@ -150,24 +150,6 @@ class _SetupState extends State<Setup> {
         SizedBox(
           height: 20.0,
         ),
-
-        // FOR TEST ONLY
-        // ElevatedButton(
-        //   onPressed: _readData,
-        //   // onPressed: () {
-        //   //   Navigator.pushNamed(context, '/sub');
-        //   // },
-        //   child: Text('TEST'),
-        //   style: TextButton.styleFrom(minimumSize: Size(100.0, 40.0)),
-        // ),
-        // ElevatedButton(
-        //   onPressed: _clearData,
-        //   // onPressed: () {
-        //   //   Navigator.pushNamed(context, '/sub');
-        //   // },
-        //   child: Text('CLEAR'),
-        //   style: TextButton.styleFrom(minimumSize: Size(100.0, 40.0)),
-        // )
       ],
     );
   }

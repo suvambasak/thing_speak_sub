@@ -1,10 +1,21 @@
 class Data {
   bool status = false;
 
+  // time and date
   String savedDate = '0000-00-00';
   String savedTime = '00:00:00';
-  String savedTemperature = '00';
-  String savedHumidity = '00';
+
+  // all data field
+  static List<String> keys = [
+    'field1',
+    'field2',
+    'field3',
+    'field4',
+    'field5',
+    'field6',
+    'field7',
+    'field8'
+  ];
 
   void setLoaded() {
     status = true;
@@ -28,21 +39,5 @@ class Data {
 
   String get time {
     return this.savedTime;
-  }
-
-  set temperature(String temperature) {
-    this.savedTemperature = temperature + '\u{B0}C';
-  }
-
-  String get temperature {
-    return this.savedTemperature;
-  }
-
-  set humidity(String humidity) {
-    this.savedHumidity = humidity + '%';
-  }
-
-  String get humidity {
-    return this.savedHumidity;
   }
 }
