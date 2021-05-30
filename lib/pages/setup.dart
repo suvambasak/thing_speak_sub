@@ -26,7 +26,10 @@ class _SetupState extends State<Setup> {
   void changePage() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     bool? status = prefs.getBool(StorageKeys.SAVE_STATUS);
-    if (status != null && status) Navigator.pushNamed(context, '/sub');
+    if (status != null && status) {
+      Navigator.pop(context);
+      Navigator.pushNamed(context, '/sub');
+    }
   }
 
   // save data and change page

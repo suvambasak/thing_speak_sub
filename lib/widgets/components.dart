@@ -19,6 +19,7 @@ class Heading extends StatelessWidget {
 
     // back to setup page
     Navigator.pop(context);
+    Navigator.pushNamed(context, '/setup');
   }
 
   @override
