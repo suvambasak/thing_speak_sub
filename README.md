@@ -4,31 +4,42 @@ A new Flutter project. A cross-platform app that subscribes to the **ThingSpeak 
 
 # Android Build
 For Android App:
-- Donwload **APK** from here: [__Link__](https://github.com/suvambasak/thing_speak_sub/releases/download/v0.1-alpha/app-release.apk).
+- Donwload **APK** from here: [__Link__](https://github.com/suvambasak/thing_speak_sub/releases/download/v0.2-alpha/app-release.apk).
 - Before you install just goto: Settings > Apps & notifications > Special app access > install unknown apps and allow that app from where you are trying to install it.
+
 <br><br>
 <p align="center">
-  <img height="540" width="250" src="https://github.com/suvambasak/thing_speak_sub/blob/master/doc/android.gif?raw=true">
+  <img height="540" width="240" src="https://github.com/suvambasak/thing_speak_sub/blob/dev/doc/android.gif?raw=true">
 </p>
 
-<!-- ![Android App](https://github.com/suvambasak/thing_speak_sub/blob/master/doc/android.gif?raw=true) -->
+
 <br><br>
 
-# Desktop Build (Linux only)
-For Desktop App:
-- Donwload **tar.gz** file from here: [__Link__](https://github.com/suvambasak/thing_speak_sub/releases/download/v0.1-alpha/release-linux.tar.gz).
+# Desktop Build
+## For Linux Desktop App:
+- Donwload **tar.zx** file from here: [__Link__](https://github.com/suvambasak/thing_speak_sub/releases/download/v0.2-alpha/release-linux64.tar.xz).
 - Extract the file.
-- Double click on the thing_speak_sub **OR** open terminal in that directory chnage permission and execute.
+- Double click on the `thing_speak_sub` **OR** open terminal in that directory chnage permission and execute.
 
 ```bash
 $ sudo chmod +x thing_speak_sub
 $ ./thing_speak_sub
 ```
-<p align="center">
-  <img height="470" width="582" src="https://github.com/suvambasak/thing_speak_sub/blob/master/doc/desktop_linux.png?raw=true">
+<p align="center" width="100%">
+  <img height="470" width="500" src="https://github.com/suvambasak/thing_speak_sub/blob/master/doc/desktop1.png?raw=true">
 </p>
 
-<!-- ![Desktop App](https://github.com/suvambasak/thing_speak_sub/blob/master/doc/desktop_linux.png?raw=true) -->
+<p align="center" width="100%">
+  <img height="470" width="450" src="https://github.com/suvambasak/thing_speak_sub/blob/master/doc/desktop2.png?raw=true">
+
+  <img height="470" width="450" src="https://github.com/suvambasak/thing_speak_sub/blob/master/doc/desktop3.png?raw=true">
+</p>
+<br>
+
+## For Windows Desktop App:
+- Donwload **zip** file from here: [__Link__](https://github.com/suvambasak/thing_speak_sub/releases/download/v0.2-alpha/Release-win64.zip).
+- Extract the file.
+- Double click on the `thing_speak_sub.exe` to execute.
 <br><br>
 
 
@@ -36,13 +47,13 @@ $ ./thing_speak_sub
 # Web Build
 For Web App:
 ## Setup a local server
-Install Node.js and npm
+Install `Node.js` and `npm`
 ```bash
 $ sudo apt install nodejs npm
 $ sudo npm install http-server -g
 ```
 ## Start
-Donwload the [__zip__](https://github.com/suvambasak/thing_speak_sub/releases/download/v0.1-alpha/release-web.tar.gz). and unzip it. Inside that directory start http-server.
+Donwload the [__zip__](https://github.com/suvambasak/thing_speak_sub/releases/download/v0.2-alpha/release-web.zip) and unzip it. Inside that directory start `http-server`.
 
 ```bash
 $ http-server
@@ -50,10 +61,12 @@ $ http-server
 Goto : http://localhost:8080/
 <br><br>
 <p align="center">
-  <img width="400" hight="752" src="https://github.com/suvambasak/thing_speak_sub/blob/master/doc/web.png?raw=true">
+  <img width="500" src="https://github.com/suvambasak/thing_speak_sub/blob/master/doc/web1.png?raw=true">
+</p>
+<p align="center">
+  <img width="500" src="https://github.com/suvambasak/thing_speak_sub/blob/master/doc/web2.png?raw=true">
 </p>
 
-<!-- ![Web App](https://github.com/suvambasak/thing_speak_sub/blob/master/doc/web.png?raw=true) -->
 
 <br><br><br>
 ---
@@ -65,18 +78,7 @@ Goto : http://localhost:8080/
 ```bash
 $ sudo apt install git
 $ git clone https://github.com/suvambasak/thing_speak_sub.git
-$ cd thing_speak_sub
+$ code thing_speak_sub
 ```
 - And start working! <span>&#128077;&#127996;</span>
 
-<!-- 
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference. -->
