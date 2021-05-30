@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:thing_speak_sub/util/storage.dart';
 
-import '../head/header.dart';
+import '../widgets/header.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class Setup extends StatefulWidget {
@@ -10,8 +10,6 @@ class Setup extends StatefulWidget {
 }
 
 class _SetupState extends State<Setup> {
-  // header
-  Header header = Header();
   // from key
   final _dataFrom = GlobalKey<FormState>();
   // input field controller
@@ -40,7 +38,8 @@ class _SetupState extends State<Setup> {
 
       SharedPreferences prefs = await SharedPreferences.getInstance();
       prefs.setString(StorageKeys.CHANNEL_ID, channelTextController.text);
-      prefs.setString(StorageKeys.FIELD_COUNT, fieldTextController.text);
+      prefs.setInt(
+          StorageKeys.FIELD_COUNT, int.parse(fieldTextController.text));
       prefs.setBool(StorageKeys.SAVE_STATUS, true);
 
       Navigator.pushNamed(context, '/sub');
@@ -87,8 +86,8 @@ class _SetupState extends State<Setup> {
             right: 16.0,
           ),
           children: [
-            header.getHeader(false),
-            header.getSubHeader('Setup'),
+            Heading(false),
+            SubHeading('Setup'),
             SizedBox(
               height: 20.0,
             ),

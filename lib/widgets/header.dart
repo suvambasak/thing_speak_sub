@@ -2,15 +2,20 @@ import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:thing_speak_sub/util/storage.dart';
 
-class Header {
+// ignore: must_be_immutable
+class Heading extends StatelessWidget {
+  late bool logoutButton;
+
+  Heading(this.logoutButton);
+
   void _clearData() async {
+    print('logout button pressed');
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    prefs.remove(StorageKeys.CHANNEL_ID);
-    prefs.remove(StorageKeys.FIELD_COUNT);
-    prefs.remove(StorageKeys.SAVE_STATUS);
+    prefs.setBool(StorageKeys.SAVE_STATUS, false);
   }
 
-  Widget getHeader(bool logout) {
+  @override
+  Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.only(left: 8.0, right: 8.0),
       child: Row(
@@ -24,7 +29,7 @@ class Header {
             ),
           ),
           Spacer(),
-          logout
+          logoutButton
               ? Column(
                   children: [
                     IconButton(
@@ -40,12 +45,18 @@ class Header {
       ),
     );
   }
+}
 
-  Widget getSubHeader(String text) {
+// ignore: must_be_immutable
+class SubHeading extends StatelessWidget {
+  String title;
+  SubHeading(this.title);
+  @override
+  Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.only(left: 110.0, right: 8.0),
       child: Text(
-        text,
+        title,
         textScaleFactor: 1.5,
         style: TextStyle(
           color: Colors.green,

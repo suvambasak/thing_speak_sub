@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
-import 'package:thing_speak_sub/data.dart';
-import 'package:thing_speak_sub/head/header.dart';
+import 'package:thing_speak_sub/widgets/header.dart';
+
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:thing_speak_sub/util/storage.dart';
 
 class TpSub extends StatefulWidget {
   @override
@@ -10,18 +12,27 @@ class TpSub extends StatefulWidget {
 }
 
 class _TpSubState extends State<TpSub> {
-  // URL
-  static const String dataURL =
-      'https://api.thingspeak.com/channels/1385704/feeds.json?results=1';
-
   // Logos
+  static const IconData defaultLogo = Icons.domain_verification_outlined;
   static const IconData dateLogo = Icons.date_range;
   static const IconData timeLogo = Icons.timer;
-  static const IconData temperatureLogo = Icons.thermostat;
-  static const IconData humidityLogo = Icons.air;
 
-  // Current data.
-  Data currentState = Data();
+  List<String> keys = [
+    'field1',
+    'field2',
+    'field3',
+    'field4',
+    'field5',
+    'field6',
+    'field7',
+    'field8'
+  ];
+
+  late int len;
+  late Map<String, dynamic> jsonResponse;
+  late String time;
+  late String date;
+  bool status = false;
 
   @override
   void initState() {
@@ -49,20 +60,22 @@ class _TpSubState extends State<TpSub> {
 
 // UI build
   List<Widget> body() {
-    Header header = Header();
     List<Widget> components = [];
     components.add(SizedBox(height: 8.0));
-    components.add(header.getHeader(true));
-    components.add(header.getSubHeader('Subscribe'));
+    components.add(Heading(true));
+    components.add(SubHeading('Subscribe'));
     components.add(SizedBox(height: 16.0));
 
-    if (currentState.isloaded) {
-      components.add(cardBuilder(dateLogo, 'Data', currentState.date));
-      components.add(cardBuilder(timeLogo, 'Time', currentState.time));
-      components.add(cardBuilder(
-          temperatureLogo, 'Temperature', currentState.temperature));
-      components
-          .add(cardBuilder(humidityLogo, 'Humidity', currentState.humidity));
+    if (status) {
+      components.add(cardBuilder(dateLogo, 'Data', date));
+      components.add(cardBuilder(timeLogo, 'Time', time));
+
+      for (int i = 0; i < len; i++) {
+        components.add(cardBuilder(
+            defaultLogo,
+            jsonResponse['channel'][keys[i]],
+            jsonResponse['feeds'][0][keys[i]]));
+      }
     } else {
       components.add(Center(
           child: Padding(
@@ -76,25 +89,26 @@ class _TpSubState extends State<TpSub> {
 
   // Fetch data.
   Future<void> loadData() async {
-    http.Response response = await http.get(Uri.parse(dataURL));
-    // print(jsonDecode(response.body));
-    if (response.statusCode == 200) {
-      Map<String, dynamic> jsonResponse =
-          jsonDecode(response.body) as Map<String, dynamic>;
+    // NEW
 
-      // print(jsonResponse['feeds'][0]['created_at'].split('T')[0]);
-      // print(jsonResponse['feeds'][0]['created_at'].split('T')[1].split('Z')[0]);
-      // print(jsonResponse['feeds'][0]['field1']);
-      // print(jsonResponse['feeds'][0]['field2']);
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    len = prefs.getInt(StorageKeys.FIELD_COUNT)!;
+    String channelId = (prefs.getString(StorageKeys.CHANNEL_ID) ?? '1403127');
+    print(len);
+    print(channelId);
 
+    final String url =
+        'https://api.thingspeak.com/channels/${channelId}/feeds.json?results=1';
+    print(url);
+
+    http.Response response1 = await http.get(Uri.parse(url));
+    if (response1.statusCode == 200) {
       setState(() {
-        currentState.date =
-            jsonResponse['feeds'][0]['created_at'].split('T')[0];
-        currentState.time =
+        jsonResponse = jsonDecode(response1.body) as Map<String, dynamic>;
+        date = jsonResponse['feeds'][0]['created_at'].split('T')[0];
+        time =
             jsonResponse['feeds'][0]['created_at'].split('T')[1].split('Z')[0];
-        currentState.temperature = jsonResponse['feeds'][0]['field1'];
-        currentState.humidity = jsonResponse['feeds'][0]['field2'];
-        currentState.setLoaded();
+        status = true;
       });
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
