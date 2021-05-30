@@ -14,7 +14,7 @@ class TpSub extends StatefulWidget {
 
 class _TpSubState extends State<TpSub> {
   // Logos
-  static const IconData defaultLogo = Icons.domain_verification_outlined;
+  static const IconData defaultLogo = Icons.mark_chat_read_outlined;
   static const IconData dateLogo = Icons.date_range;
   static const IconData timeLogo = Icons.timer;
 

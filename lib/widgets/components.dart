@@ -86,38 +86,42 @@ class CardBuilder extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(15.0),
-      ),
-      elevation: 10.0,
-      child: Column(
-        children: [
-          ListTile(
-            leading: Icon(logo, color: Colors.black),
-            title: Text(
-              heading,
-              textScaleFactor: 1.2,
-              style: TextStyle(color: Colors.blue, fontWeight: FontWeight.bold),
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 8.0),
+      child: Card(
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(15.0),
+        ),
+        elevation: 10.0,
+        child: Column(
+          children: [
+            ListTile(
+              leading: Icon(logo, color: Colors.black),
+              title: Text(
+                heading,
+                textScaleFactor: 1.2,
+                style:
+                    TextStyle(color: Colors.blue, fontWeight: FontWeight.bold),
+              ),
             ),
-          ),
-          Divider(
-            indent: 20.0,
-            endIndent: 20.0,
-            thickness: 3,
-          ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Text(
-              state,
-              textScaleFactor: 4,
-              style: TextStyle(color: Colors.blueGrey.shade700),
+            Divider(
+              indent: 20.0,
+              endIndent: 20.0,
+              thickness: 2,
             ),
-          ),
-          SizedBox(
-            height: 3,
-          )
-        ],
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Text(
+                state,
+                textScaleFactor: 4,
+                style: TextStyle(color: Colors.blueGrey.shade700),
+              ),
+            ),
+            SizedBox(
+              height: 3,
+            )
+          ],
+        ),
       ),
     );
   }

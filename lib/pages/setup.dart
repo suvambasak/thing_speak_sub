@@ -80,7 +80,7 @@ class _SetupState extends State<Setup> {
       body: SafeArea(
         child: ListView(
           padding: EdgeInsets.only(
-            top: 16.0,
+            top: 32.0,
             bottom: 70.0,
             left: 16.0,
             right: 16.0,
@@ -102,55 +102,63 @@ class _SetupState extends State<Setup> {
   }
 
   // from layout
-  Column setForm() {
-    return Column(
-      children: [
-        // channel id
-        TextFormField(
-          controller: channelTextController,
-          decoration: InputDecoration(
-            labelText: 'Channel ID',
-            hintText: 'Your Chennel ID (Eg: 1385093)',
+  Widget setForm() {
+    return Padding(
+      padding: const EdgeInsets.only(left: 32.0, right: 32.0, top: 32.0),
+      child: Column(
+        children: [
+          // channel id
+          TextFormField(
+            controller: channelTextController,
+            decoration: InputDecoration(
+              labelText: 'Channel ID',
+              hintText: 'Your Chennel ID (Eg: 1385093)',
+            ),
+            keyboardType: TextInputType.number,
+            validator: (value) {
+              if (value!.isEmpty) return 'Channel ID cannot be empty!';
+              if (value.contains(RegExp(r'[A-Z]')) ||
+                  value.contains(RegExp(r'[a-z]')))
+                return 'Channel ID must be number!';
+              return null;
+            },
           ),
-          validator: (value) {
-            if (value!.isEmpty) return 'Channel ID cannot be empty!';
-            return null;
-          },
-        ),
-        SizedBox(
-          height: 5.0,
-        ),
-
-        // number of field
-        TextFormField(
-          controller: fieldTextController,
-          decoration: InputDecoration(
-            labelText: 'Total Field',
-            hintText: 'No of Field: (Eg: 2)',
+          SizedBox(
+            height: 5.0,
           ),
-          keyboardType: TextInputType.number,
-          validator: (value) {
-            if (value!.isEmpty) return 'No of Field cannot be empty!';
-            return null;
-          },
-        ),
-        SizedBox(
-          height: 15.0,
-        ),
 
-        // button to save
-        ElevatedButton(
-          onPressed: _saveData,
-          // onPressed: () {
-          //   Navigator.pushNamed(context, '/sub');
-          // },
-          child: Text('Save'),
-          style: TextButton.styleFrom(minimumSize: Size(100.0, 40.0)),
-        ),
-        SizedBox(
-          height: 20.0,
-        ),
-      ],
+          // number of field
+          TextFormField(
+            controller: fieldTextController,
+            decoration: InputDecoration(
+              labelText: 'Total Field',
+              hintText: 'No of Field: (Eg: 2)',
+            ),
+            keyboardType: TextInputType.number,
+            validator: (value) {
+              if (value!.isEmpty) return 'No of Field cannot be empty!';
+              if (int.parse(value) == 0) return 'No of Field cannot be zero!';
+              if (value.contains(RegExp(r'[A-Z]')) ||
+                  value.contains(RegExp(r'[a-z]')))
+                return 'No of Field must be number!';
+              return null;
+            },
+          ),
+          SizedBox(
+            height: 32.0,
+          ),
+
+          // button to save
+          ElevatedButton(
+            onPressed: _saveData,
+            child: Text('Subscribe Channel'),
+            style: TextButton.styleFrom(minimumSize: Size(100.0, 40.0)),
+          ),
+          SizedBox(
+            height: 20.0,
+          ),
+        ],
+      ),
     );
   }
 
